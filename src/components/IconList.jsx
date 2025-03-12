@@ -55,7 +55,7 @@ export default function IconList({ selectedIcon }) {
         </div>
       </div>
       <Dialog open={openDialog} onOpenChange={setOpenDialog}>
-        <DialogContent>
+        <DialogContent className="bg-white">
           <DialogHeader>
             <DialogTitle>Pick Your Favourite Icon</DialogTitle>
             <DialogDescription>
