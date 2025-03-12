@@ -19,12 +19,13 @@ function App() {
   //   iconColor: "#fff",
   // }
   const [updateStorage, setUpdateStorage] = useState({});
+  const [downloadLogo, setDownloadLogo] = useState();
   return (
     <UpgradeStorageValueContext.Provider
       value={{ updateStorage, setUpdateStorage }}
     >
       <div>
-        <Header></Header>
+        <Header setDownloadLogo={setDownloadLogo}></Header>
 
         <div className="w-64 fixed">
           <SideNav setSelectedIndex={setSelectedIndex}></SideNav>
@@ -39,7 +40,7 @@ function App() {
           </div>
 
           <div className="md:col-span-3 ">
-            <LogoPreview />
+            <LogoPreview downloadLogo={downloadLogo}/>
           </div>
         </div>
       </div>
