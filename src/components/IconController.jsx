@@ -11,7 +11,7 @@ export default function IconController() {
 
   const [size, setSize] = useState(storageValue?.iconSize || 280);
   const [rotate, setRotate] = useState(storageValue?.iconRotate || 0);
-  const [color, setColor] = useState(storageValue?.iconColor || "#fff");
+  const [color, setColor] = useState(storageValue?.iconColor || "#000");
   const { updateStorage, setUpdateStorage } = useContext(
     UpgradeStorageValueContext
   );
@@ -40,7 +40,7 @@ export default function IconController() {
           </label>
           <Slider
             defaultValue={[size]}
-            max={512}
+            max={460}
             step={1}
             onValueChange={(event) => setSize(event[0])}
           />

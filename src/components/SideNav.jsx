@@ -23,7 +23,7 @@ export default function SideNav({setSelectedIndex}) {
 
     const [activeIndex, setActiveIndex]=useState(0);
   return (
-    <div className='border shadow-sm h-screen'>
+    <div className=' shadow-sm h-screen'>
         <div className=''>
             {menuList.map((menu,index)=>(
                 <h2

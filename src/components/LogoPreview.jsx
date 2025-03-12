@@ -56,9 +56,9 @@ export default function LogoPreview({ downloadLogo }) {
   };
 
   return (
-    <div className="flex h-screen justify-center items-center">
+    <div className="flex h-screen justify-center items-center ">
       <div
-        className="h-[430px] w-[430px] bg-gray-200 outline-dotted outline-gray-300"
+        className="h-[460px] w-[460px] bg-gray-200 outline-dotted outline-gray-300"
         style={{
           padding: storageValue?.bgPading,
         }}

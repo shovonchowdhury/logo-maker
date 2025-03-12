@@ -9,7 +9,7 @@ import IconController from "./components/IconController";
 import BackgroundController from "./components/BackgroundController";
 import LogoPreview from "./components/LogoPreview";
 import { UpgradeStorageValueContext } from "./context/UpgradeStorageValueContext";
-
+import Upgrade from "./components/Upgrade";
 
 function App() {
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -27,20 +27,25 @@ function App() {
       <div>
         <Header setDownloadLogo={setDownloadLogo}></Header>
 
-        <div className="w-64 fixed">
-          <SideNav setSelectedIndex={setSelectedIndex}></SideNav>
-        </div>
-        <div className="ml-64 grid grid-cols-1 md:grid-cols-5">
-          <div className="md:col-span-2 border md:h-screen shadow-sm p-5 overflow-auto">
-            {selectedIndex === 0 ? (
-              <IconController />
-            ) : (
-              <BackgroundController />
-            )}
+        <div className="grid grid-cols-1 md:grid-cols-6">
+          <div className="md:col-span-1">
+            <SideNav setSelectedIndex={setSelectedIndex}></SideNav>
           </div>
 
-          <div className="md:col-span-3 ">
-            <LogoPreview downloadLogo={downloadLogo}/>
+          <div className="grid grid-cols-5 md:col-span-5">
+            <div className="md:h-screen md:col-span-2 shadow-sm p-5 overflow-auto">
+              {selectedIndex === 0 ? (
+                <IconController />
+              ) : selectedIndex === 1 ? (
+                <BackgroundController />
+              ) : (
+                <Upgrade />
+              )}
+            </div>
+
+            <div className="md:h-screen md:col-span-3">
+              <LogoPreview downloadLogo={downloadLogo} />
+            </div>
           </div>
         </div>
       </div>
