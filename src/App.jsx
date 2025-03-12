@@ -13,6 +13,11 @@ import { UpgradeStorageValueContext } from "./context/UpgradeStorageValueContext
 
 function App() {
   const [selectedIndex, setSelectedIndex] = useState(0);
+  // const storageData = {
+  //   iconSize: 280,
+  //   iconRotate: 0,
+  //   iconColor: "#fff",
+  // }
   const [updateStorage, setUpdateStorage] = useState({});
   return (
     <UpgradeStorageValueContext.Provider

@@ -2,14 +2,15 @@ import React, { useContext, useEffect, useState } from "react";
 import { Slider } from "./ui/slider";
 import { Smile } from "lucide-react";
 import ColourPicker from "./ColourPicker";
-import { UpgradeStorageValueContext} from "@/context/UpgradeStorageValueContext";
+import { UpgradeStorageValueContext } from "@/context/UpgradeStorageValueContext";
 
 export default function BackgroundController() {
-  const [rounded, setRounded] = useState(0);
-  const [padding, setPadding] = useState(40);
-  const [color, setColor] = useState("#000");
-
   const storageValue = JSON.parse(localStorage.getItem("value"));
+
+  const [rounded, setRounded] = useState(storageValue?.bgRounded || 0);
+  const [padding, setPadding] = useState(storageValue?.bgPading || 40);
+  const [color, setColor] = useState(storageValue?.bgColor || "#000");
+
   const { updateStorage, setUpdateStorage } = useContext(
     UpgradeStorageValueContext
   );
@@ -24,7 +25,7 @@ export default function BackgroundController() {
 
     localStorage.setItem("value", JSON.stringify(upgratedValue));
     setUpdateStorage(upgratedValue);
-  },[rounded,color,padding]);
+  }, [rounded, color, padding]);
   return (
     <div>
       <div className="py-2">
@@ -33,7 +34,7 @@ export default function BackgroundController() {
         </label>
         <Slider
           className=""
-          defaultValue={[0]}
+          defaultValue={[rounded]}
           max={512}
           step={1}
           onValueChange={(event) => setRounded(event[0])}
@@ -45,7 +46,7 @@ export default function BackgroundController() {
         </label>
         <Slider
           className=""
-          defaultValue={[40]}
+          defaultValue={[padding]}
           max={512}
           step={1}
           onValueChange={(event) => setPadding(event[0])}

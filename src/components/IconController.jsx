@@ -3,42 +3,43 @@ import React, { useContext, useEffect, useState } from "react";
 import { Slider } from "@/components/ui/slider";
 import ColourPicker from "./ColourPicker";
 import { UpgradeStorageValueContext } from "@/context/UpgradeStorageValueContext";
+import IconList from "./IconList";
 
 
 export default function IconController() {
-  const [size, setSize] = useState(280);
-  const [rotate, setRotate] = useState(0);
-  const [color, setColor] = useState("#fff");
+  const storageValue = JSON.parse(localStorage.getItem("value"));
+
+  const [size, setSize] = useState(storageValue?.iconSize || 280);
+  const [rotate, setRotate] = useState(storageValue?.iconRotate || 0);
+  const [color, setColor] = useState(storageValue?.iconColor || "#fff");
   const { updateStorage, setUpdateStorage } = useContext(
     UpgradeStorageValueContext
   );
+  const [icon, setIcon]= useState(storageValue?.icon || 'Smile');
 
-  const storageValue = JSON.parse(localStorage.getItem("value"));
+  
   useEffect(() => {
     const upgratedValue = {
       ...storageValue,
       iconSize: size,
       iconRotate: rotate,
       iconColor: color,
-      icon: 'Smile',
+      icon: icon,
     };
 
     localStorage.setItem("value", JSON.stringify(upgratedValue));
     setUpdateStorage(upgratedValue);
-  }, [size, rotate, color]);
+  }, [size, rotate, color, icon]);
   return (
     <div>
       <div>
-        <label>Icon</label>
-        <div className="bg-gray-200 w-[50px] h-[50px] flex justify-center items-center p-3 my-2 rounded-md cursor-pointer">
-          <Smile />
-        </div>
+        <IconList selectedIcon={(icon)=> setIcon(icon)}/>
         <div className="py-2">
           <label className="p-2 flex justify-between items-center">
             Size <span>{size}px</span>
           </label>
           <Slider
-            defaultValue={[280]}
+            defaultValue={[size]}
             max={512}
             step={1}
             onValueChange={(event) => setSize(event[0])}
@@ -49,7 +50,7 @@ export default function IconController() {
             Rotate<span>{rotate}°</span>
           </label>
           <Slider
-            defaultValue={[0]}
+            defaultValue={[rotate]}
             max={512}
             step={1}
             onValueChange={(event) => setRotate(event[0])}
